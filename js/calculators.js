@@ -458,7 +458,7 @@ const READINESS_QUESTIONS = [
         }
       }
 
-      html += '<p style="font-size:13px;color:#6B7280;margin-top:16px">Data: USDA, Brookings Institution, Child Care Aware, ONS, GOV.UK, MOHAP. Built by Sarah, MBA (Éditeur de calculateurs et de guides pratiques), father of two.</p>';
+      html += '<p style="font-size:13px;color:#6B7280;margin-top:16px">Data: USDA, Brookings Institution, Child Care Aware, ONS, GOV.UK, MOHAP. Published by Radif Partners.</p>';
 
       // Share button
       html += '<div style="margin-top:16px"><button onclick="shareCalcResults()" class="btn-secondary" style="padding:8px 20px;font-size:14px">Copy link to share</button></div>';
