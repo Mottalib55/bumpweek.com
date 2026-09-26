@@ -107,8 +107,11 @@ strong {
 }
 
 /* --- Layout --- */
+/* 780 px laissait 170 px de vide de chaque côté sur un écran de 1080 px, sans
+   que la ligne de texte y gagne quoi que ce soit : les tableaux, eux, y
+   perdaient une colonne lisible (check-layout, 2026-09-26). */
 .container {
-  max-width: 780px;
+  max-width: 920px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -1296,6 +1299,7 @@ section.section h2:first-child {
 
 .comparison-table table {
   min-width: 700px;
+  margin: 0;
 }
 
 /* --- Template email block --- */
@@ -1416,9 +1420,11 @@ section.section h2:first-child {
     font-size: 13px;
   }
 
+  /* le débord négatif visait un tableau pleine largeur dans le padding du
+     conteneur ; sur un élément défilable il déborde simplement de 20 px à
+     droite du document (check-layout, 2026-09-26). */
   .comparison-table {
-    margin: 16px -20px;
-    padding: 0 20px;
+    margin: 16px 0;
   }
 
   .tabs {
@@ -1452,4 +1458,32 @@ section.section h2:first-child {
   .hero h1 {
     font-size: 1.8rem;
   }
+}
+
+/* --- Code (page widget) --- */
+/* Sans règle, le bloc d'intégration débordait de 148 px sur mobile : une ligne
+   de code ne se coupe pas toute seule (check-layout, 2026-09-26). */
+pre {
+  overflow-x: auto;
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 16px;
+  margin: 20px 0;
+  max-width: 100%;
+}
+
+pre code {
+  font-size: 13px;
+  line-height: 1.6;
+  white-space: pre;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.92em;
+  background: var(--color-bg-alt);
+  padding: 1px 5px;
+  border-radius: 4px;
+  overflow-wrap: anywhere;
 }

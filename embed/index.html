@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Baby Cost Calculator, BumpWeek widget</title>
+  <meta name="description" content="Embeddable version of the BumpWeek baby cost calculator: first-year and birth-to-eighteen estimates by country, state and lifestyle.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://bumpweek.com/tools/baby-cost-calculator/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    body { margin: 0; padding: 16px; background: #fff; }
+    .embed-credit { font-size: .85rem; text-align: right; margin: 12px 0 0; }
+  </style>
+</head>
+<body class="embed">
+  <main>
+    <h1 class="embed-title">Baby cost calculator</h1>
+      <div id="baby-calc" class="calc-section">
+
+        <!-- Step 1: Country -->
+        <div class="calc-step">
+          <h3>Step 1: Choose your country</h3>
+          <div class="option-group">
+            <button class="option-btn" data-country="us">&#127482;&#127480; United States</button>
+            <button class="option-btn" data-country="uk">&#127468;&#127463; United Kingdom</button>
+            <button class="option-btn" data-country="uae">&#127462;&#127466; UAE</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Country-specific options -->
+
+        <!-- US Options -->
+        <div class="country-options" data-for="us" style="display:none">
+          <div class="calc-step">
+            <h3>State</h3>
+            <select id="calc-region" class="calc-select">
+              <option value="">Select your state</option>
+              <option value="Alabama">Alabama</option>
+              <option value="Alaska">Alaska</option>
+              <option value="Arizona">Arizona</option>
+              <option value="Arkansas">Arkansas</option>
+              <option value="California">California</option>
+              <option value="Colorado">Colorado</option>
+              <option value="Connecticut">Connecticut</option>
+              <option value="Delaware">Delaware</option>
+              <option value="District of Columbia">District of Columbia</option>
+              <option value="Florida">Florida</option>
+              <option value="Georgia">Georgia</option>
+              <option value="Hawaii">Hawaii</option>
+              <option value="Idaho">Idaho</option>
+              <option value="Illinois">Illinois</option>
+              <option value="Indiana">Indiana</option>
+              <option value="Iowa">Iowa</option>
+              <option value="Kansas">Kansas</option>
+              <option value="Kentucky">Kentucky</option>
+              <option value="Louisiana">Louisiana</option>
+              <option value="Maine">Maine</option>
+              <option value="Maryland">Maryland</option>
+              <option value="Massachusetts">Massachusetts</option>
+              <option value="Michigan">Michigan</option>
+              <option value="Minnesota">Minnesota</option>
+              <option value="Mississippi">Mississippi</option>
+              <option value="Missouri">Missouri</option>
+              <option value="Montana">Montana</option>
+              <option value="Nebraska">Nebraska</option>
+              <option value="Nevada">Nevada</option>
+              <option value="New Hampshire">New Hampshire</option>
+              <option value="New Jersey">New Jersey</option>
+              <option value="New Mexico">New Mexico</option>
+              <option value="New York">New York</option>
+              <option value="North Carolina">North Carolina</option>
+              <option value="North Dakota">North Dakota</option>
+              <option value="Ohio">Ohio</option>
+              <option value="Oklahoma">Oklahoma</option>
+              <option value="Oregon">Oregon</option>
+              <option value="Pennsylvania">Pennsylvania</option>
+              <option value="Rhode Island">Rhode Island</option>
+              <option value="South Carolina">South Carolina</option>
+              <option value="South Dakota">South Dakota</option>
+              <option value="Tennessee">Tennessee</option>
+              <option value="Texas">Texas</option>
+              <option value="Utah">Utah</option>
+              <option value="Vermont">Vermont</option>
+              <option value="Virginia">Virginia</option>
+              <option value="Washington">Washington</option>
+              <option value="West Virginia">West Virginia</option>
+              <option value="Wisconsin">Wisconsin</option>
+              <option value="Wyoming">Wyoming</option>
+            </select>
+          </div>
+
+          <div class="calc-step">
+            <h3>Birth plan</h3>
+            <div class="option-group">
+              <button class="option-btn" data-group="birth" data-option="vaginal">Vaginal delivery</button>
+              <button class="option-btn" data-group="birth" data-option="csection">C-section</button>
+              <button class="option-btn" data-group="birth" data-option="birth_center">Birth center</button>
+              <button class="option-btn" data-group="birth" data-option="home_birth">Home birth</button>
+            </div>
+          </div>
+
+          <div class="calc-step">
+            <h3>Insurance</h3>
+            <div class="option-group">
+              <button class="option-btn" data-group="insurance" data-option="insured">Employer insurance</button>
+              <button class="option-btn" data-group="insurance" data-option="marketplace">Marketplace (ACA)</button>
+              <button class="option-btn" data-group="insurance" data-option="medicaid">Medicaid</button>
+              <button class="option-btn" data-group="insurance" data-option="uninsured">Uninsured</button>
+            </div>
+          </div>
+
+          <div class="calc-step">
+            <h3>Feeding</h3>
+            <div class="option-group">
+              <button class="option-btn" data-group="feeding" data-option="breastfeeding">Breastfeeding</button>
+              <button class="option-btn" data-group="feeding" data-option="formula">Formula</button>
+              <button class="option-btn" data-group="feeding" data-option="mixed">Mixed</button>
+            </div>
+          </div>
+
+          <div class="calc-step">
+            <h3>Childcare</h3>
+            <div class="option-group">
+              <button class="option-btn" data-group="childcare" data-option="daycare">Daycare center</button>
+              <button class="option-btn" data-group="childcare" data-option="home_daycare">Home daycare</button>
+              <button class="option-btn" data-group="childcare" data-option="nanny">Nanny</button>
+              <button class="option-btn" data-group="childcare" data-option="stay_home">Stay-at-home parent</button>
+            </div>
+          </div>
+
+          <div class="calc-step">
+            <h3>Diapers</h3>
+            <div class="option-group">
+              <button class="option-btn" data-group="diapers" data-option="disposable">Disposable</button>
+              <button class="option-btn" data-group="diapers" data-option="cloth">Cloth</button>
+              <button class="option-btn" data-group="diapers" data-option="mixed">Mixed</button>
+            </div>
+          </div>
+
+          <div class="calc-step">
+            <h3>Gear &amp; nursery</h3>
+            <div class="option-group">
+              <button class="option-btn" data-group="gear" data-option="all_new">All new</button>
+              <button class="option-btn" data-group="gear" data-option="secondhand">Mostly secondhand</button>
+              <button class="option-btn" data-group="gear" data-option="mixed">Mix of new &amp; used</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- UK Options -->
+        <div class="country-options" data-for="uk" style="display:none">
+          <div class="calc-step">
+            <h3>Region</h3>
+            <select id="calc-region" class="calc-select">
+              <option value="">Select your region</option>
+              <option value="London">London</option>
+              <option value="South East">South East</option>
+              <option value="Rest of England">Rest of England</option>
+              <option value="Scotland">Scotland</option>
+              <option value="Wales">Wales</option>
+              <option value="Northern Ireland">Northern Ireland</option>
+            </select>
+          </div>
+
+          <div class="calc-step">
+            <h3>Birth plan</h3>
+            <div class="option-group">
+              <button class="option-btn" data-group="birth" data-option="nhs">NHS (free)</button>
+              <button class="option-btn" data-group="birth" data-option="private">Private hospital</button>
+            </div>
+          </div>
+
+          <div class="calc-step">
+            <h3>Feeding</h3>
+            <div class="option-group">
+              <button class="option-btn" data-group="feeding" data-option="breastfeeding">Breastfeeding</button>
+              <button class="option-btn" data-group="feeding" data-option="formula">Formula</button>
+              <button class="option-btn" data-group="feeding" data-option="mixed">Mixed</button>
+            </div>
+          </div>
+
+          <div class="calc-step">
+            <h3>Childcare</h3>
+            <div class="option-group">
+              <button class="option-btn" data-group="childcare" data-option="nursery">Nursery</button>
+              <button class="option-btn" data-group="childcare" data-option="home_daycare">Childminder</button>
+              <button class="option-btn" data-group="childcare" data-option="nanny">Nanny</button>
+              <button class="option-btn" data-group="childcare" data-option="stay_home">Stay-at-home parent</button>
+            </div>
+          </div>
+
+          <div class="calc-step">
+            <h3>Diapers</h3>
+            <div class="option-group">
+              <button class="option-btn" data-group="diapers" data-option="disposable">Disposable</button>
+              <button class="option-btn" data-group="diapers" data-option="cloth">Cloth</button>
+              <button class="option-btn" data-group="diapers" data-option="mixed">Mixed</button>
+            </div>
+          </div>
+
+          <div class="calc-step">
+            <h3>Gear &amp; nursery</h3>
+            <div class="option-group">
+              <button class="option-btn" data-group="gear" data-option="all_new">All new</button>
+              <button class="option-btn" data-group="gear" data-option="secondhand">Mostly secondhand</button>
+              <button class="option-btn" data-group="gear" data-option="mixed">Mix of new &amp; used</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- UAE Options -->
+        <div class="country-options" data-for="uae" style="display:none">
+          <div class="calc-step">
+            <h3>Emirate</h3>
+            <select id="calc-region" class="calc-select">
+              <option value="">Select your emirate</option>
+              <option value="Dubai">Dubai</option>
+              <option value="Abu Dhabi">Abu Dhabi</option>
+              <option value="Other">Other emirate</option>
+            </select>
+          </div>
+
+          <div class="calc-step">
+            <h3>Birth plan</h3>
+            <div class="option-group">
+              <button class="option-btn" data-group="birth" data-option="vaginal">Vaginal delivery</button>
+              <button class="option-btn" data-group="birth" data-option="csection">C-section</button>
+            </div>
+          </div>
+
+          <div class="calc-step">
+            <h3>Insurance</h3>
+            <div class="option-group">
+              <button class="option-btn" data-group="insurance" data-option="insured">Insurance</button>
+              <button class="option-btn" data-group="insurance" data-option="self_pay">Self-pay</button>
+            </div>
+          </div>
+
+          <div class="calc-step">
+            <h3>Childcare</h3>
+            <div class="option-group">
+              <button class="option-btn" data-group="childcare" data-option="nursery">Nursery</button>
+              <button class="option-btn" data-group="childcare" data-option="nanny">Nanny</button>
+              <button class="option-btn" data-group="childcare" data-option="family">Family / stay-at-home</button>
+            </div>
+          </div>
+
+          <div class="calc-step">
+            <h3>Feeding</h3>
+            <div class="option-group">
+              <button class="option-btn" data-group="feeding" data-option="breastfeeding">Breastfeeding</button>
+              <button class="option-btn" data-group="feeding" data-option="formula">Formula</button>
+              <button class="option-btn" data-group="feeding" data-option="mixed">Mixed</button>
+            </div>
+          </div>
+
+          <div class="calc-step">
+            <h3>Diapers</h3>
+            <div class="option-group">
+              <button class="option-btn" data-group="diapers" data-option="disposable">Disposable</button>
+              <button class="option-btn" data-group="diapers" data-option="cloth">Cloth</button>
+              <button class="option-btn" data-group="diapers" data-option="mixed">Mixed</button>
+            </div>
+          </div>
+
+          <div class="calc-step">
+            <h3>Gear &amp; nursery</h3>
+            <div class="option-group">
+              <button class="option-btn" data-group="gear" data-option="all_new">All new</button>
+              <button class="option-btn" data-group="gear" data-option="secondhand">Mostly secondhand</button>
+              <button class="option-btn" data-group="gear" data-option="mixed">Mix of new &amp; used</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Results -->
+        <div id="calc-results" style="display:none"></div>
+
+      </div>
+    <p class="embed-credit">Calculator by <a href="https://bumpweek.com/" target="_blank" rel="noopener">BumpWeek</a></p>
+  </main>
+  <script src="/js/main.js" defer></script>
+</body>
+</html>
