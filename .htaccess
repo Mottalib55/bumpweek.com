@@ -1,6 +1,18 @@
-# ── Force HTTPS ─────────────────────────────────────────────────────────────
 <IfModule mod_rewrite.c>
   RewriteEngine On
+
+  # ── Une seule adresse : https://bumpweek.com, sans www, en un seul saut ──────
+  RewriteCond %{HTTP_HOST} ^www\. [NC,OR]
   RewriteCond %{HTTPS} off
-  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  RewriteRule ^ https://bumpweek.com%{REQUEST_URI} [L,R=301]
+
+  # ── /dossier/index.html est la meme page que /dossier/ ──────────────────────
+  RewriteCond %{THE_REQUEST} \s/+(?:[^?\s]*/)?index\.html[\s?] [NC]
+  RewriteRule ^(.*/)?index\.html$ https://bumpweek.com/$1 [L,R=301]
+
+  # ── Barre oblique finale : redirection ecrite ici, sinon Apache renvoie vers
+  #    une adresse portant le port (https://bumpweek.com:443/...) ─────────────
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteCond %{REQUEST_URI} !/$
+  RewriteRule ^(.*)$ https://bumpweek.com/$1/ [L,R=301]
 </IfModule>
