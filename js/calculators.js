@@ -177,6 +177,12 @@ const FORMULA_BRANDS = [
   { name: "HiPP (imported)", size_oz: 28, price: 40, per_oz: 1.43, type: "European", organic: true }
 ];
 
+/* Prices are per ounce of powder; consumption is in fluid ounces of prepared formula.
+   Label mixing ratio (Enfamil, Similac): one 8.7 g scoop per 2 fl oz of water, so one
+   ounce of powder (28.35 g) makes about 6.5 fl oz. Without this conversion the calculator
+   priced each fluid ounce as an ounce of powder and showed $500 to $1,600 a month. */
+const PREPARED_OZ_PER_POWDER_OZ = 6.5;
+
 /* Formula consumption by age (oz per day) */
 const FORMULA_CONSUMPTION = [
   { month: 0, label: "Newborn", oz_per_day: 20 },
@@ -518,6 +524,7 @@ const READINESS_QUESTIONS = [
       el.addEventListener('input', calculateBudget);
       el.addEventListener('change', calculateBudget);
     });
+    calculateBudget();
 
     function calculateBudget() {
       var income = parseFloat(document.getElementById('bp-income').value) || 0;
@@ -550,7 +557,14 @@ const READINESS_QUESTIONS = [
 
       // Display
       var resultsDiv = document.getElementById('budget-results');
-      if (!resultsDiv || income === 0) return;
+      if (!resultsDiv) return;
+      if (income === 0) {
+        // Bloc du résultat visible dès l'arrivée, à côté des champs (RECETTE §5, 2026-10-11).
+        resultsDiv.innerHTML = '<div class="card"><h3>Available for baby: enter your income</h3></div>';
+        resultsDiv.removeAttribute('data-barre');
+        return;
+      }
+      resultsDiv.setAttribute('data-barre', '$' + totalBaby.toLocaleString());
 
       var rentPct = income > 0 ? Math.round((rent / income) * 100) : 0;
       var fixedPct = income > 0 ? Math.round((fixed / income) * 100) : 0;
@@ -734,13 +748,16 @@ const READINESS_QUESTIONS = [
       html += '<table><thead><tr><th>Brand</th><th>Type</th><th>Monthly Cost</th><th>Annual Cost</th></tr></thead><tbody>';
 
       FORMULA_BRANDS.forEach(function(brand) {
-        var monthly = Math.round(consumption.oz_per_day * 30 * brand.per_oz);
+        var monthly = Math.round(consumption.oz_per_day * 30 / PREPARED_OZ_PER_POWDER_OZ * brand.per_oz);
         var annual = monthly * 12;
         html += '<tr><td>' + brand.name + '</td><td>' + brand.type + '</td><td>$' + monthly.toLocaleString() + '</td><td>$' + annual.toLocaleString() + '</td></tr>';
       });
       html += '</tbody></table>';
 
       resultsDiv.innerHTML = html;
+      // Chiffre clé de la barre collante (téléphone) : fourchette mensuelle, marque la moins chère à la plus chère.
+      var costs = FORMULA_BRANDS.map(function(brand) { return Math.round(consumption.oz_per_day * 30 / PREPARED_OZ_PER_POWDER_OZ * brand.per_oz); });
+      resultsDiv.setAttribute('data-barre', '$' + Math.min.apply(null, costs).toLocaleString() + '\u2013$' + Math.max.apply(null, costs).toLocaleString());
     }
   }
 

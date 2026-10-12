@@ -136,10 +136,10 @@
         </nav>
 
         <h1>Baby Budget Planner</h1>
-        <p class="page-byline" data-author="Radif Partners">Published by Radif Partners · Updated <time datetime="2026-09-21">21 September 2026</time></p>
 
-        <p>This budget planner shows what is left each month once a baby's costs are added to your household. You enter your monthly income after tax, your rent or mortgage, your other fixed expenses, the childcare arrangement you expect to use and how you plan to feed, and it returns a monthly picture rather than an annual total. That distinction matters: a first-year total of $24,000 is an abstraction, while a monthly shortfall of $380 from the month childcare starts is something you can act on. Everything runs in your browser: nothing you type is transmitted, stored on a server or visible to anyone, and there is no account to create. The childcare figure is the one worth getting right before you start, because it is larger than every other new line combined and varies by a factor of four between regions.</p>
+        <p class="chapeau-replie">This budget planner shows what is left each month once a baby's costs are added to your household. You enter your monthly income after tax, your rent or mortgage, your other fixed expenses, the childcare arrangement you expect to use and how you plan to feed, and it returns a monthly picture rather than an annual total. That distinction matters: a first-year total of $24,000 is an abstraction, while a monthly shortfall of $380 from the month childcare starts is something you can act on. Everything runs in your browser: nothing you type is transmitted, stored on a server or visible to anyone, and there is no account to create. The childcare figure is the one worth getting right before you start, because it is larger than every other new line combined and varies by a factor of four between regions.</p>
 
+        <div class="premier-ecran">
         <form id="budget-planner">
 
           <div class="budget-input-group">
@@ -191,7 +191,9 @@
 
         </form>
 
-        <div id="budget-results"></div>
+        <div id="budget-results" data-resultat aria-live="polite" data-barre-label="Baby costs per month"></div>
+        </div>
+        <p class="page-byline" data-author="Radif Partners">Published by Radif Partners · Updated <time datetime="2026-09-21">21 September 2026</time></p>
 
         <div class="related-links">
           <h2>Related Tools &amp; Guides</h2>

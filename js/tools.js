@@ -121,7 +121,7 @@ const TOTAL_ITEMS = 42;
       html += '<div class="filter-group">';
       ['all', 'need', 'have'].forEach(function(f) {
         var label = f === 'all' ? 'All items' : f === 'need' ? 'Still need' : 'Already have';
-        html += '<button class="filter-btn' + (currentFilter === f ? ' active' : '') + '" data-filter="' + f + '">' + label + '</button>';
+        html += '<button type="button" class="filter-btn' + (currentFilter === f ? ' active' : '') + '" aria-pressed="' + (currentFilter === f) + '" data-filter="' + f + '">' + label + '</button>';
       });
       html += '</div>';
 
@@ -188,6 +188,7 @@ const TOTAL_ITEMS = 42;
         '<span class="progress-text">' + checkedItems.size + ' of ' + TOTAL_ITEMS + ' (' + pct + '%)</span>' +
         '<div class="progress-bar"><div class="progress-bar-fill" style="width:' + pct + '%"></div></div>' +
         '<span class="progress-text">Remaining: ~$' + totalCostRemaining.toLocaleString() + '</span></div>';
+      progressDiv.setAttribute('data-barre', '~$' + totalCostRemaining.toLocaleString());
     }
 
     // Event delegation

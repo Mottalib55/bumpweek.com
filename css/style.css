@@ -1487,3 +1487,43 @@ code {
   border-radius: 4px;
   overflow-wrap: anywhere;
 }
+
+/* --- Premier écran : le simulateur se voit sans défiler (RECETTE §5, règle du 2026-10-11) ---
+   Chapeau replié sur 3 lignes (texte entier dans le HTML), simulateur en deux colonnes sur
+   ordinateur (champs à gauche, résultat à droite), barre collante du chiffre clé sur téléphone. */
+.chapeau-replie {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+.chapeau-replie.ouvert { display: block; overflow: visible; }
+.chapeau-bouton {
+  background: none; border: 0; padding: 0; margin: 0 0 12px;
+  font: inherit; font-size: 14px; font-weight: 600; color: var(--color-primary);
+  text-decoration: underline; cursor: pointer;
+}
+.premier-ecran { display: grid; gap: 24px; margin: 8px 0 20px; }
+.premier-ecran > * { min-width: 0; }
+.premier-ecran .formula-slider { margin: 8px 0; }
+.premier-ecran .checklist-progress { position: static; border: 1px solid var(--color-border); border-radius: 8px; padding: 12px 16px; }
+.premier-ecran .checklist-progress .container-wide { flex-wrap: wrap; padding: 0; gap: 8px 16px; }
+.premier-ecran .checklist-progress .progress-bar { flex-basis: 100%; order: 2; }
+@media (min-width: 1024px) {
+  .premier-ecran { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; }
+  .premier-ecran [data-resultat] { position: sticky; top: 76px; }
+}
+.barre-resultat {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 300;
+  display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+  padding: 12px 16px; background: #fff; border: 0; border-top: 2px solid var(--color-primary);
+  box-shadow: 0 -4px 12px rgba(0,0,0,.12); font: inherit; text-align: left; cursor: pointer;
+}
+.barre-resultat[hidden] { display: none; }
+.barre-resultat .barre-label { font-size: 14px; color: var(--color-text-light); }
+.barre-resultat .barre-valeur { font-size: 20px; font-weight: 700; color: var(--color-primary); font-variant-numeric: tabular-nums; }
+@media (min-width: 1024px) { .barre-resultat { display: none !important; } }
+/* Pages à simulateur : moins de blanc au-dessus du titre, pour garder le simulateur dans le premier écran. */
+main:has(.premier-ecran) { padding-top: 16px; }
+main:has(.premier-ecran) > section.section:first-child { padding-top: 8px; }

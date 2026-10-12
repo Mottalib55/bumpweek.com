@@ -99,4 +99,52 @@
     });
   });
 
+  /* --- Premier écran (RECETTE §5, règle du 2026-10-11) ---
+     Chapeau replié : bouton « Read more » ajouté côté client, le texte entier reste dans le HTML.
+     Téléphone : tant que le résultat [data-resultat] est sous l'écran, une barre collante en bas
+     montre son chiffre clé (attribut data-barre, posé par le calculateur) ; un toucher y descend. */
+  document.querySelectorAll('.chapeau-replie').forEach(function(p) {
+    if (p.scrollHeight <= p.clientHeight + 2) return;
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'chapeau-bouton';
+    b.setAttribute('aria-expanded', 'false');
+    b.textContent = 'Read more';
+    b.addEventListener('click', function() {
+      var open = p.classList.toggle('ouvert');
+      b.setAttribute('aria-expanded', open ? 'true' : 'false');
+      b.textContent = open ? 'Show less' : 'Read more';
+    });
+    p.insertAdjacentElement('afterend', b);
+  });
+
+  document.querySelectorAll('[data-resultat][data-barre-label]').forEach(function(res) {
+    var bar = document.createElement('button');
+    bar.type = 'button';
+    bar.className = 'barre-resultat';
+    bar.hidden = true;
+    bar.setAttribute('aria-hidden', 'true');
+    bar.tabIndex = -1;
+    var l = document.createElement('span'); l.className = 'barre-label'; l.textContent = res.getAttribute('data-barre-label');
+    var v = document.createElement('span'); v.className = 'barre-valeur';
+    bar.appendChild(l); bar.appendChild(v);
+    document.body.appendChild(bar);
+    bar.addEventListener('click', function() { res.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+    var below = false;
+    function refresh() {
+      var val = res.getAttribute('data-barre') || '';
+      v.textContent = val;
+      bar.hidden = !(below && val);
+    }
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function(entries) {
+        var e = entries[0];
+        below = !e.isIntersecting && e.boundingClientRect.top > 0;
+        refresh();
+      }).observe(res);
+    }
+    new MutationObserver(refresh).observe(res, { attributes: true, attributeFilter: ['data-barre'] });
+    refresh();
+  });
+
 })();

@@ -113,19 +113,20 @@
   <main>
     <article class="container-wide">
       <h1>How Much Does Baby Formula Cost?</h1>
-        <p class="page-byline" data-author="Radif Partners">Published by Radif Partners · Updated <time datetime="2026-09-21">21 September 2026</time></p>
-      <p>Baby formula costs between $55 and $250 a month depending almost entirely on which brand you buy, and the composition of every infant formula sold in the United States must meet the same federally mandated nutrient requirements regardless of price. A store brand at $0.56 to $0.71 an ounce and a premium brand at $1.75 to $1.79 an ounce are both regulated to that standard. Over twelve months the difference is $900 to $1,400 for a formula-fed baby. Consumption rises from roughly 20 ounces a day at one month to a peak near 32 ounces around five or six months, then falls as solid food is introduced, which is why monthly cost is not flat: expect the highest bills between months four and eight.</p>
-
-      <h2>Cost by baby's age</h2>
-      <p>Formula consumption changes as your baby grows. Use the slider to see monthly costs at each age.</p>
-
-      <div class="formula-slider">
+      <p class="chapeau-replie">Baby formula costs between $55 and $250 a month depending almost entirely on which brand you buy, and the composition of every infant formula sold in the United States must meet the same federally mandated nutrient requirements regardless of price. A store brand at $0.56 to $0.71 an ounce and a premium brand at $1.75 to $1.79 an ounce are both regulated to that standard. Over twelve months the difference is $900 to $1,400 for a formula-fed baby. Consumption rises from roughly 20 ounces a day at one month to a peak near 32 ounces around five or six months, then falls as solid food is introduced, which is why monthly cost is not flat: expect the highest bills between months four and eight.</p>
+      <div class="premier-ecran">
+        <div class="premier-ecran-champs">
+          <div class="formula-slider">
         <label for="formula-age-slider"><strong>Baby's age:</strong></label>
         <input type="range" id="formula-age-slider" min="0" max="12" value="3">
         <div class="slider-labels"><span>Newborn</span><span>12 months</span></div>
       </div>
-
-      <div id="formula-results"></div>
+        </div>
+        <div id="formula-results" data-resultat aria-live="polite" data-barre-label="Formula per month"></div>
+      </div>
+      <p class="page-byline" data-author="Radif Partners">Published by Radif Partners · Updated <time datetime="2026-09-21">21 September 2026</time></p>
+      <h2>Cost by baby's age</h2>
+      <p>Formula consumption changes as your baby grows. Use the slider to see monthly costs at each age.</p>
 
       <h2>Brand comparison</h2>
       <div class="comparison-table">
