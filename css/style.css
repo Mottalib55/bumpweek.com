@@ -1527,3 +1527,6 @@ code {
 /* Pages à simulateur : moins de blanc au-dessus du titre, pour garder le simulateur dans le premier écran. */
 main:has(.premier-ecran) { padding-top: 16px; }
 main:has(.premier-ecran) > section.section:first-child { padding-top: 8px; }
+.premier-ecran .quiz-progress { margin-bottom: 12px; }
+.premier-ecran .quiz-question { padding: 14px 24px 20px; }
+.premier-ecran .quiz-question p { margin-bottom: 12px; }

@@ -138,10 +138,10 @@
   <main>
     <div class="container-wide">
       <h1>Baby Cost Calculator</h1>
-        <p class="page-byline" data-author="Radif Partners">Published by Radif Partners · Updated <time datetime="2026-09-21">21 September 2026</time></p>
-      <p>This calculator estimates what a baby will cost you in the first year, using your country, your state or region, the childcare you intend to use and how you plan to feed. It exists because the widely quoted figures do not survive contact with an individual family: infant childcare varies by a factor of four between American states, an insured birth costs between nothing and $8,000 out of pocket depending on the plan and the month, and formula costs $55 or $250 a month for the same regulated composition. Everything runs in your browser, nothing you enter is transmitted or stored on a server, and there is no account to create. The figures behind it are the ones documented on the guides linked throughout this site, with the source and the year attached.</p>
+      <p class="chapeau-replie">This calculator estimates what a baby will cost you in the first year, using your country, your state or region, the childcare you intend to use and how you plan to feed. It exists because the widely quoted figures do not survive contact with an individual family: infant childcare varies by a factor of four between American states, an insured birth costs between nothing and $8,000 out of pocket depending on the plan and the month, and formula costs $55 or $250 a month for the same regulated composition. Everything runs in your browser, nothing you enter is transmitted or stored on a server, and there is no account to create. The figures behind it are the ones documented on the guides linked throughout this site, with the source and the year attached.</p>
 
-      <div id="baby-calc" class="calc-section">
+      <div id="baby-calc" class="calc-section premier-ecran">
+        <div class="premier-ecran-champs">
 
         <!-- Step 1: Country -->
         <div class="calc-step">
@@ -399,10 +399,12 @@
           </div>
         </div>
 
+        </div>
         <!-- Step 3: Results -->
-        <div id="calc-results" style="display:none"></div>
+        <div id="calc-results" data-resultat aria-live="polite" data-barre-label="First-year cost"><div class="calc-result"><div class="label">Estimated first-year cost</div><div class="total">–</div></div></div>
 
       </div>
+      <p class="page-byline" data-author="Radif Partners">Published by Radif Partners · Updated <time datetime="2026-09-21">21 September 2026</time></p>
     </div>
       <h2>Why our figure may differ from one you have seen elsewhere</h2>
 

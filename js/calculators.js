@@ -300,11 +300,15 @@ const READINESS_QUESTIONS = [
       gear: null
     };
 
+    // Choice buttons are toggle buttons: their state is exposed with aria-pressed.
+    calcForm.querySelectorAll('.option-btn').forEach(function(b) { b.type = 'button'; b.setAttribute('aria-pressed', 'false'); });
+
     // Country selection
     document.querySelectorAll('[data-country]').forEach(function(btn) {
       btn.addEventListener('click', function() {
-        document.querySelectorAll('[data-country]').forEach(function(b) { b.classList.remove('selected'); });
+        document.querySelectorAll('[data-country]').forEach(function(b) { b.classList.remove('selected'); b.setAttribute('aria-pressed', 'false'); });
         this.classList.add('selected');
+        this.setAttribute('aria-pressed', 'true');
         state.country = this.getAttribute('data-country');
         showCountryOptions(state.country);
         calculate();
@@ -316,8 +320,9 @@ const READINESS_QUESTIONS = [
       var btn = e.target.closest('[data-option]');
       if (!btn) return;
       var group = btn.getAttribute('data-group');
-      calcForm.querySelectorAll('[data-group="' + group + '"]').forEach(function(b) { b.classList.remove('selected'); });
+      calcForm.querySelectorAll('[data-group="' + group + '"]').forEach(function(b) { b.classList.remove('selected'); b.setAttribute('aria-pressed', 'false'); });
       btn.classList.add('selected');
+      btn.setAttribute('aria-pressed', 'true');
       state[group] = btn.getAttribute('data-option');
       calculate();
     });
@@ -345,7 +350,7 @@ const READINESS_QUESTIONS = [
       state.gear = null;
       // Reset UI
       calcForm.querySelectorAll('.option-btn').forEach(function(b) {
-        if (!b.hasAttribute('data-country')) b.classList.remove('selected');
+        if (!b.hasAttribute('data-country')) { b.classList.remove('selected'); b.setAttribute('aria-pressed', 'false'); }
       });
       var selects = calcForm.querySelectorAll('select');
       selects.forEach(function(s) { s.selectedIndex = 0; });
@@ -476,7 +481,7 @@ const READINESS_QUESTIONS = [
       html += '</div>';
 
       resultsDiv.innerHTML = html;
-      resultsDiv.style.display = 'block';
+      resultsDiv.setAttribute('data-barre', sym + total.toLocaleString());
     }
 
     // Read URL params on load
@@ -781,8 +786,9 @@ const READINESS_QUESTIONS = [
         '<div class="quiz-progress"><div class="progress-bar"><div class="progress-bar-fill" style="width:' + Math.round((currentQ / READINESS_QUESTIONS.length) * 100) + '%"></div></div>' +
         '<span class="progress-text">Q ' + (currentQ + 1) + ' of ' + READINESS_QUESTIONS.length + '</span></div>' +
         '<div class="quiz-question"><p>' + q.question + '</p>' +
-        '<div class="quiz-btns"><button class="quiz-btn yes" data-answer="yes">Yes</button>' +
-        '<button class="quiz-btn no" data-answer="no">No</button></div></div>';
+        '<div class="quiz-btns"><button type="button" class="quiz-btn yes" data-answer="yes" aria-pressed="false">Yes</button>' +
+        '<button type="button" class="quiz-btn no" data-answer="no" aria-pressed="false">No</button></div></div>';
+      updateScore();
     }
 
     quizContainer.addEventListener('click', function(e) {
@@ -793,7 +799,17 @@ const READINESS_QUESTIONS = [
       renderQuestion();
     });
 
+    // Running score beside the questions (RECETTE §5, 2026-10-11).
+    function updateScore() {
+      var box = document.getElementById('quiz-score');
+      if (!box) return;
+      var yes = answers.filter(function(a) { return a === 'yes'; }).length;
+      box.innerHTML = '<div class="quiz-score"><div class="score-number">' + yes + '/' + READINESS_QUESTIONS.length + '</div><p>Yes answers so far</p></div>';
+      box.setAttribute('data-barre', yes + '/' + READINESS_QUESTIONS.length);
+    }
+
     function showQuizResults() {
+      updateScore();
       var yesCount = answers.filter(function(a) { return a === 'yes'; }).length;
       var color, emoji, msg;
 
