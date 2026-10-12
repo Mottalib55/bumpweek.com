@@ -328,13 +328,14 @@ const READINESS_QUESTIONS = [
     });
 
     // Region dropdown
-    var regionSelect = document.getElementById('calc-region');
-    if (regionSelect) {
-      regionSelect.addEventListener('change', function() {
-        state.region = this.value;
+    // Region dropdowns: one per country (calc-region-us, -uk, -uae); only the active country's list counts.
+    calcForm.querySelectorAll('.country-options .calc-select').forEach(function(sel) {
+      sel.addEventListener('change', function() {
+        if (this.closest('.country-options').getAttribute('data-for') !== state.country) return;
+        state.region = this.value || null;
         calculate();
       });
-    }
+    });
 
     function showCountryOptions(country) {
       document.querySelectorAll('.country-options').forEach(function(el) {
@@ -498,6 +499,7 @@ const READINESS_QUESTIONS = [
           }
         });
         var regionVal = params.get('region');
+        var regionSelect = document.getElementById('calc-region-' + state.country);
         if (regionVal && regionSelect) {
           regionSelect.value = regionVal;
           regionSelect.dispatchEvent(new Event('change'));
