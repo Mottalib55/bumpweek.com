@@ -483,6 +483,7 @@ const READINESS_QUESTIONS = [
 
       resultsDiv.innerHTML = html;
       resultsDiv.setAttribute('data-barre', sym + total.toLocaleString());
+      resultsDiv.style.display = 'block';
     }
 
     // Read URL params on load
