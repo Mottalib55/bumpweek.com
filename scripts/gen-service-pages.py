@@ -125,15 +125,15 @@ PAGES["legal"] = dict(
 
       <h2>Privacy</h2>
 
-      <p>BumpWeek sets no cookies and Radif Partners records no personal data about its readers. The only measurement is an anonymous, cookieless check of site stability with Microsoft Clarity, described with its provider, retention period and the way to object on the <a href="/privacy/">privacy policy</a>.</p>""",
+      <p>BumpWeek sets Google Analytics audience measurement cookies (<code>_ga</code>, <code>_ga_X3GWYCY8R0</code>, 13 months at most), with no advertising; site stability is monitored with Microsoft Clarity, cookie-free. Details, providers, legal basis and how to object are in the <a href="/privacy/">privacy policy</a>.</p>""",
 )
 
 PAGES["privacy"] = dict(
     h1="Privacy policy",
-    titre="Privacy Policy: What BumpWeek Collects and Never Does",
-    description="BumpWeek sets no cookies and keeps no personal data: the baby cost calculators run in your browser, and only anonymous, cookieless stability checks are made.",
+    titre="Privacy Policy: Google Analytics, Clarity and Your Rights",
+    description="Google Analytics audience measurement with cookies and no advertising, cookie-free Clarity stability checks, calculators that run in your browser, and your rights.",
     fil=[("/privacy/", "Privacy policy")],
-    corps="""      <p>BumpWeek is a set of static pages about the cost of having a baby, with calculators that run in your browser. That shapes everything below: the due date, salary, childcare quote or registry items you enter stay on your device and are never sent to us, because there is no server here to receive them. This site sets no cookie, and Radif Partners keeps no personal data about the people who read it. The only thing measured is whether the pages work properly, anonymously, as explained here.</p>
+    corps="""      <p>BumpWeek is a set of static pages about the cost of having a baby, with calculators that run in your browser. That shapes everything below: the due date, salary, childcare quote or registry items you enter stay on your device and are never sent to us, because there is no server here to receive them. The site measures its audience with Google Analytics, which sets two cookies, and checks that its pages work with Microsoft Clarity, which sets none, as explained here.</p>
 
       <h2>Who is responsible</h2>
 
@@ -141,15 +141,25 @@ PAGES["privacy"] = dict(
 
       <h2>What the baby cost calculators do with your figures</h2>
 
-      <p>Nothing leaves your browser and nothing is kept on your device. The baby cost calculator, the budget planner, the formula calculator and the registry checklist compute their results with JavaScript on your own screen; when you close or reload the page, the figures are gone. They write nothing to cookies, local storage or session storage, and we have no copy of what you typed.</p>
+      <p>Nothing leaves your browser and nothing is kept on your device. The baby cost calculator, the budget planner, the formula calculator and the registry checklist compute their results with JavaScript on your own screen; when you close or reload the page, the figures are gone. They write nothing to your browser storage (local or session storage), and we have no copy of what you typed.</p>
 
-      <h2>No cookies</h2>
+      <h2 id="cookies">Audience measurement with Google Analytics</h2>
 
-      <p>No cookie is set by BumpWeek, by its calculators or by the stability measurement described below: no <code>_clck</code>, <code>_clsk</code>, <code>MUID</code> or <code>CLID</code>, and no advertising or audience cookie of any kind. Because there is nothing to accept or refuse, there is no cookie banner on this site.</p>
+      <p>The site uses Google Analytics 4 to count visits and see which pages are useful: pages viewed, referring page, visit length, device and browser type, approximate country and city. To do so Google Analytics sets two cookies on your device: <code>_ga</code>, which tells visitors apart with a random identifier, and <code>_ga_X3GWYCY8R0</code>, which keeps the state of the visit. Their lifetime is set to 13 months at most (390 days) and is not extended on each visit; Google’s default is 2 years. These are the only cookies on the site: the calculators and the stability measurement below set none (no <code>_clck</code>, <code>_clsk</code>, <code>MUID</code> or <code>CLID</code>), and there is no advertising or social-media cookie.</p>
 
-      <h2>Anonymous measurement of site stability</h2>
+      <p>The IP address is anonymised: Google Analytics 4 neither logs nor stores it, and only uses it at collection time to derive an approximate country and city. The page address sent to Google Analytics is stripped of its parameters. The site shows no advertising: ad storage, ad user data, ad personalisation and Google signals are switched off, and measurement data is shared with no advertiser.</p>
 
-      <p>To spot broken pages, we use Microsoft Clarity in its cookieless mode. It reports technical signals only: script errors, loading times, clicks that do nothing (a button that fails on a phone, for instance) and how far a page is scrolled. Each page view receives its own random identifier, so two pages read by the same person are not linked together and no visitor can be followed from one visit to the next. The text of the pages and everything typed into the calculators is masked in your browser before anything is sent, so Clarity never sees a due date, a salary or an amount.</p>
+      <ul>
+        <li><strong>Provider:</strong> Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland, acting as processor under Article 28 GDPR. Data may be transferred to Google LLC in the United States under the EU–U.S. Data Privacy Framework and the European Commission’s standard contractual clauses.</li>
+        <li><strong>Purpose:</strong> audience measurement, nothing else.</li>
+        <li><strong>Retention at Google:</strong> 14 months for visit-level and identifier-level data, then deletion; only anonymous totals remain.</li>
+        <li><strong>Legal basis:</strong> our legitimate interest in knowing which pages help readers (Article 6(1)(f) GDPR, and the equivalent provision of the UK GDPR).</li>
+        <li><strong>How to object:</strong> block or delete cookies in your browser settings, or install the <a href="https://tools.google.com/dlpage/gaoptout" rel="nofollow noopener" target="_blank">Google Analytics opt-out browser add-on</a>. Every page and every calculator works the same way.</li>
+      </ul>
+
+      <h2>Anonymous measurement of site stability, cookie-free</h2>
+
+      <p>To spot broken pages, we use Microsoft Clarity in its cookieless mode, so Clarity sets no cookie. It reports technical signals only: script errors, loading times, clicks that do nothing (a button that fails on a phone, for instance) and how far a page is scrolled. Each page view receives its own random identifier, so two pages read by the same person are not linked together and no visitor can be followed from one visit to the next. The text of the pages and everything typed into the calculators is masked in your browser before anything is sent, so Clarity never sees a due date, a salary or an amount.</p>
 
       <ul>
         <li><strong>Provider:</strong> Microsoft Ireland Operations Limited, One Microsoft Place, South County Business Park, Leopardstown, Dublin 18, Ireland (<a href="https://privacy.microsoft.com/privacystatement" rel="nofollow noopener" target="_blank">Microsoft privacy statement</a>). Data may be processed by Microsoft Corporation in the United States under the EU–U.S. Data Privacy Framework.</li>
@@ -165,7 +175,7 @@ PAGES["privacy"] = dict(
 
       <h2>Your rights</h2>
 
-      <p>Under the GDPR and the UK GDPR you may ask for access to, correction or erasure of any personal data about you, and you may object to the stability measurement. As we hold no file in which a reader can be identified, the usual answer to an access request is that there is nothing to disclose, and we will confirm that in writing if you ask at <a href="mailto:contact@bumpweek.com">contact@bumpweek.com</a>. You may also complain to a data protection authority: the CNIL in France (<a href="https://www.cnil.fr/" rel="nofollow">cnil.fr</a>), where the publisher is established, the ICO in the United Kingdom (<a href="https://ico.org.uk/" rel="nofollow">ico.org.uk</a>), or the authority of your own country.</p>""",
+      <p>Under the GDPR and the UK GDPR you may ask for access to, correction or erasure of any personal data about you, and you may object to the audience measurement or the stability measurement. With no user accounts, we usually hold no data that identifies you, and we will confirm that in writing if you ask at <a href="mailto:contact@bumpweek.com">contact@bumpweek.com</a>. You may also complain to a data protection authority: the CNIL in France (<a href="https://www.cnil.fr/" rel="nofollow">cnil.fr</a>), where the publisher is established, the ICO in the United Kingdom (<a href="https://ico.org.uk/" rel="nofollow">ico.org.uk</a>), or the authority of your own country.</p>""",
 )
 
 PAGES["methodology"] = dict(
