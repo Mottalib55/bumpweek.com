@@ -37,7 +37,7 @@ const BABY_COST_DATA = {
       "Louisiana": { center: 7320, home: 5160 },
       "Maine": { center: 11400, home: 8040 },
       "Maryland": { center: 16200, home: 11160 },
-      "Massachusetts": { center: 20880, home: 13800 },
+      "Massachusetts": { center: 20913, home: 13800 },
       "Michigan": { center: 10560, home: 7680 },
       "Minnesota": { center: 16440, home: 11040 },
       "Mississippi": { center: 6240, home: 4560 },
@@ -200,14 +200,16 @@ const FORMULA_CONSUMPTION = [
   { month: 12, label: "12 months", oz_per_day: 16 }
 ];
 
-/* --- Tax Benefits Data (IRS, 2025-2026) --- */
+/* --- Tax Benefits Data (IRS, tax year 2026, read 2026-10-31) ---
+   CTC, standard deductions: Rev. Proc. 2025-32 (https://www.irs.gov/pub/irs-drop/rp-25-32.pdf)
+   Dependent care FSA: IRS Pub. 15-B (2026); HSA family limit: Rev. Proc. 2025-19 */
 const TAX_DATA = {
-  child_tax_credit: 2000,
-  dependent_care_fsa_limit: 5000,
+  child_tax_credit: 2200,
+  dependent_care_fsa_limit: 7500,
   medical_deduction_threshold: 0.075,
-  hsa_family_limit: 8550,
-  head_of_household_deduction: 22200,
-  single_deduction: 15700,
+  hsa_family_limit: 8750,
+  head_of_household_deduction: 24150,
+  single_deduction: 16100,
   state_credits: [
     { state: "California", name: "Young Child Tax Credit", amount: 1117 },
     { state: "Colorado", name: "Child Tax Credit", amount: 1200 },
@@ -418,9 +420,14 @@ const READINESS_QUESTIONS = [
       // Gear
       var gearCost = state.gear ? mid(d.gear[state.gear] || { min: 0, max: 0 }) : 0;
 
+      // Medicaid: no cost sharing for pregnancy-related care (42 CFR 447.56(a)(1)(vii)),
+      // and an infant born to a Medicaid mother is covered for the first year without premium.
+      var onMedicaid = state.country === 'us' && state.insurance === 'medicaid';
+      if (onMedicaid) birthCost = 0;
+
       // Fixed costs
       var clothingCost = mid(d.clothing_annual);
-      var healthCost = mid(d.health_annual);
+      var healthCost = onMedicaid ? 0 : mid(d.health_annual);
       var miscCost = mid(d.misc_annual);
 
       var total = birthCost + childcareCost + feedingCost + diaperCost + gearCost + clothingCost + healthCost + miscCost;
