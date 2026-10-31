@@ -210,6 +210,13 @@ const TAX_DATA = {
   hsa_family_limit: 8750,
   head_of_household_deduction: 24150,
   single_deduction: 16100,
+  /* Federal brackets 2026, Rev. Proc. 2025-32 section 4.01, tables 1 to 3: upper bound of each
+     taxable income band, then the rate (the last rate applies above the last bound). */
+  brackets_2026: {
+    married_joint: { bounds: [24800, 100800, 211400, 403550, 512450, 768700], rates: [0.10, 0.12, 0.22, 0.24, 0.32, 0.35, 0.37] },
+    head_of_household: { bounds: [17700, 67450, 105700, 201750, 256200, 640600], rates: [0.10, 0.12, 0.22, 0.24, 0.32, 0.35, 0.37] },
+    single: { bounds: [12400, 50400, 105700, 201775, 256225, 640600], rates: [0.10, 0.12, 0.22, 0.24, 0.32, 0.35, 0.37] }
+  },
   state_credits: [
     { state: "California", name: "Young Child Tax Credit", amount: 1117 },
     { state: "Colorado", name: "Child Tax Credit", amount: 1200 },
@@ -672,7 +679,11 @@ const READINESS_QUESTIONS = [
       if (income > 400000 && filing !== 'single') ctc = Math.max(0, ctc - Math.floor((income - 400000) / 1000) * 50);
 
       var fsaSavings = Math.min(childcareExp, TAX_DATA.dependent_care_fsa_limit);
-      var marginalRate = income > 182100 ? 0.32 : income > 95375 ? 0.24 : income > 44725 ? 0.22 : 0.12;
+      // A single parent with a qualifying child files as head of household; otherwise married filing jointly.
+      var table = TAX_DATA.brackets_2026[filing === 'single' ? 'head_of_household' : 'married_joint'];
+      var band = 0;
+      while (band < table.bounds.length && income > table.bounds[band]) band++;
+      var marginalRate = table.rates[band];
       var fsaTaxSaved = Math.round(fsaSavings * marginalRate);
 
       var hohSavings = 0;
